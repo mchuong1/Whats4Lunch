@@ -8,46 +8,63 @@ body {
   background-attachment: fixed;
   background: linear-gradient(#fcfff4,#e9e9ce);
 }
-
-li{
-  display: inline;
+.container{
+  grid-template-columns: 1fr, 1fr;
+  grid-template-rows: 100fr, 300fr;
+  grid-template-areas:
+    "Header"
+    "Content";
 }
-
 .Place {
   font-family: 'Acme', sans-serif;
-  text-align: center;
 }
-
-.Place h1{
-  font-size: 100px;
-}
-
-.Place input{
-  border-radius: 5px;
-  padding: 10px;
-  width:300px;
+h1,h2,h3,input,button, ul, li, p {
   font-family: 'Acme', sans-serif;
 }
-
-.Place button{
-  padding: 10px;
-  background-color: crimson;
-  border-radius: 5px;
-  border-color:red;
-  color:yellow;
-  font-family: 'Acme', sans-serif;
-}
-.Places {
+ul.header li {
+  grid-area: header;
   display: inline;
+  list-style-type: none;
+  margin: 0;
+}
+ul.header li a {
+  color: white;
+  text-decoration: none;
+  padding: 20px;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 100%;
+  animation-name: 'example';
+  animation-direction: 4s;
+  animation-iteration-count: infinite;
+}
+ul.header button{
+  background-color: crimson;
+  border-color: red;
+  color: yellow;
+  padding: 10px;
+  border-radius: 5px;
+}
+ul.header input{
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+ul.header {
+  background-color: black;
+  margin:0;
 }
 #map {
-  height:62.5vh;
- }
+  height: 84vh;
+  margin: 0;
+}
 
- article{
-  display: grid;
-  grid-template-columns: 1fr minmax(0,8.5in) 1fr;
-  grid-template-rows: auto;
- }
-
- article * { grid-column: 2/3; }
+@keyframes example {
+  0% {color: white;}
+  20% {color: red;}
+  40% {color: yellow;}
+  60% {color: blue;}
+  80% {color: green;}
+  100% {color: white;}
+}

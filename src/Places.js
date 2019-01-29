@@ -18,55 +18,49 @@ class Places extends React.Component {
     }
     render(){
         let mapBar = null;
-        if(this.state.isMap){ 
+        if(this.state.isMap){
             mapBar = <Map lat={this.state.lat} lng={this.state.lng} locations={this.state.locations}/>
         }
         return(
-            <div className="Place">
-            <nav className="Navbar">
-                <h1>Whats4Lunch</h1>
-                <h3>Hungry? Let's look for something to eat!</h3>
-                <form onSubmit={this.handleClick}>
-                <input 
-                    id="query" 
-                    type="text" 
-                    placeholder="Coffee, sushi, pizza, etc..." 
-                    onChange={this.handleChange}
-                    autoFocus
-                    />
-                <button id="submit">Let's Eat!</button>
-                </form>
-            </nav>
-                <br/>
-                <ul>
-                {this.state.venues.map(venue=>{
-                    return <li key={venue.venue.id}> 
-                    <Place venue={venue.venue} lat={this.state.lat} lng={this.state.lng}/>
-                    </li>  
-                })}
-                </ul>
-                <Map lat={this.state.lat} lng={this.state.lng} locations={this.state.locations} venues={this.state.venues}/>
+            <div>
+                <div className="Place">
+                <ul className="header">
+                        <li style={{fontSize: 40}}><a href="#">Whats4Lunch</a></li>
+                        {this.state.venues.map(venue=>{
+                        return <li key={venue.venue.id}><a href="#">
+                        <Place venue={venue.venue} lat={this.state.lat} lng={this.state.lng}/>
+                        </a></li>
+                    })}
+                        <form onSubmit={this.handleClick}>
+                            <input
+                                id="query"
+                                type="text"
+                                placeholder="Coffee, sushi, pizza, etc..."
+                                onChange={this.handleChange}
+                                autoFocus
+                                />
+                        <button id="submit">Let's Eat!</button>
+                        </form>
+                    </ul>
+                    <Map lat={this.state.lat} lng={this.state.lng} locations={this.state.locations} venues={this.state.venues}/>
+                </div>
             </div>
         )
     }
-
     componentDidMount(){
         this.getLocation(); //turn this into a user response
     }
-
     handleClick=(e)=>{
         e.preventDefault()
         this.setState({locations:[]})
         this.getVenues(this.state.query)
     }
-
     handleChange=(event)=>{
         console.log(event.target.value)
         this.setState({
             query:event.target.value
         })
     }
-
     getLocation = () => {
         navigator.geolocation.getCurrentPosition(response => {
             console.log(response.coords)
@@ -77,16 +71,15 @@ class Places extends React.Component {
             })
         })
     }
-
     getVenues = (query) => {
         const endpoint = "https://api.foursquare.com/v2/venues/explore?"
         const params = {
             client_id: "MBDW52IQNZDUMKO4LXYXNLDGNNSAEBY4KMGNTSHCNKPO1ZXQ",
             client_secret: "Y2DLAVALWAYU5TYZUIORUPN21HRNZPQGO0VVOWN15REYC4OB",
-            ll: this.state.latlong, 
+            ll: this.state.latlong,
             query: query,
             v:"20190101",
-            limit: 5,
+            limit: 6,
             openNow: 1
         }
         axios.get(endpoint + new URLSearchParams(params))
