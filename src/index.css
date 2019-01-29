@@ -1,0 +1,53 @@
+html {
+  height: 100%;;
+}
+body {
+  height:100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background: linear-gradient(#fcfff4,#e9e9ce);
+}
+
+li{
+  display: inline;
+}
+
+.Place {
+  font-family: 'Acme', sans-serif;
+  text-align: center;
+}
+
+.Place h1{
+  font-size: 100px;
+}
+
+.Place input{
+  border-radius: 5px;
+  padding: 10px;
+  width:300px;
+  font-family: 'Acme', sans-serif;
+}
+
+.Place button{
+  padding: 10px;
+  background-color: crimson;
+  border-radius: 5px;
+  border-color:red;
+  color:yellow;
+  font-family: 'Acme', sans-serif;
+}
+.Places {
+  display: inline;
+}
+#map {
+  height:62.5vh;
+ }
+
+ article{
+  display: grid;
+  grid-template-columns: 1fr minmax(0,8.5in) 1fr;
+  grid-template-rows: auto;
+ }
+
+ article * { grid-column: 2/3; }
