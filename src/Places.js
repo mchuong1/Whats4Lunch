@@ -23,7 +23,7 @@ class Places extends React.Component {
                     <ul className="header">
                         <form onSubmit={this.handleClick}>
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4VdmZk_mf-XHIQ9iPcDGDIv-SuiY9PYlANTeagAP0kWu-t3CMbw" onClick={this.menu}/>
-                            <li>Whats4Lunch</li>
+                            <li>FillMyStomach</li>
                             <input
                                 id="query"
                                 type="text"
@@ -51,6 +51,7 @@ class Places extends React.Component {
         e.preventDefault()
         this.setState({locations:[]})
         this.getVenues(this.state.query)
+        this.getNearby(this.state.query)
     }
     handleChange=(event)=>{
         console.log(event.target.value)
@@ -93,6 +94,21 @@ class Places extends React.Component {
             })
         })
     }
+    getNearby=(query)=>{
+        const endpoint = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
+        const params = {
+            location: this.state.latlong,
+            opennow: true,
+            key: "AIzaSyCn5XAF4sSSjnjEVvWd8yB-nAyG8YOIb0o",
+            radius: 2000,
+            type: 'restaurant',
+            query: query
+        }
+        axios.get(endpoint +new URLSearchParams(params))
+        .then(response =>{
+            console.log(response)
+        })
+    }
     logLocations=()=>{
         this.state.venues.map(venue=>{
           return this.setState({
@@ -102,6 +118,7 @@ class Places extends React.Component {
     }
     menu(){
         console.log("works")
+        
     }
 }
 

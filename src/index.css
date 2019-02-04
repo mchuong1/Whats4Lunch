@@ -41,17 +41,17 @@ ul.header li a {
   display:none;
 }
 ul.header button{
-  background-color: crimson;
-  border-color: red;
-  color: yellow;
-  padding: 10px;
+  background-color: cornflowerblue;
+  border-color: white;
+  color: white;
+  padding: 5px;
   border-radius: 5px;
   position: relative;
   right:auto;
   top:-5px;
 }
 ul.header input{
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
   position: relative;
   right:auto;
@@ -70,10 +70,11 @@ ul.header img{
   position: relative;
   left: auto;
   top: 10px;
+  transition: height 0.2s
 }
 ul.header img:hover{
   cursor: pointer;
-  height: 70px;
+  height:60px;
 }
 ul.header li a:hover{
   background-color: gray;
@@ -95,6 +96,5 @@ ul.header li a:hover{
   80% {color: green;}
   100% {color: white;}
 }
-
 
 
