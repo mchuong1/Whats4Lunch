@@ -5,7 +5,7 @@ class Place extends React.Component{
     render(){
         return(
             <div className="Places">
-                <p>{this.props.venue.name}</p>
+                <a href="javascript:void(0)">{this.props.venue.name}</a>
             </div>
         )
     }

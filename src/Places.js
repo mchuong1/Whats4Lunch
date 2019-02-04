@@ -17,22 +17,13 @@ class Places extends React.Component {
         }
     }
     render(){
-        let mapBar = null;
-        if(this.state.isMap){
-            mapBar = <Map lat={this.state.lat} lng={this.state.lng} locations={this.state.locations}/>
-        }
         return(
             <div>
                 <div className="Place">
                     <ul className="header">
                         <form onSubmit={this.handleClick}>
-                            <li 
-                            style={{fontSize: 40}}><a href="#">Whats4Lunch</a></li>
-                            {this.state.venues.map(venue=>{
-                            return <li key={venue.venue.id}><a href="#">
-                            <Place venue={venue.venue} lat={this.state.lat} lng={this.state.lng}/>
-                            </a></li>
-                            })}
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4VdmZk_mf-XHIQ9iPcDGDIv-SuiY9PYlANTeagAP0kWu-t3CMbw" onClick={this.menu}/>
+                            <li>Whats4Lunch</li>
                             <input
                                 id="query"
                                 type="text"
@@ -41,7 +32,11 @@ class Places extends React.Component {
                                 autoFocus
                                 />
                             <button id="submit">Let's Eat!</button>
-                            <a href="#" class="icon" onClick={this.menu}><i class="fa fa-bars"></i></a>
+                            {this.state.venues.map(venue=>{
+                            return <li key={venue.venue.id}>
+                            <Place venue={venue.venue} lat={this.state.lat} lng={this.state.lng}/>
+                            </li>
+                            })}
                         </form>
                     </ul>
                     <Map lat={this.state.lat} lng={this.state.lng} locations={this.state.locations} venues={this.state.venues}/>
