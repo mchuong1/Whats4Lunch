@@ -24,14 +24,15 @@ class Places extends React.Component {
         return(
             <div>
                 <div className="Place">
-                <ul className="header">
-                        <li style={{fontSize: 40}}><a href="#">Whats4Lunch</a></li>
-                        {this.state.venues.map(venue=>{
-                        return <li key={venue.venue.id}><a href="#">
-                        <Place venue={venue.venue} lat={this.state.lat} lng={this.state.lng}/>
-                        </a></li>
-                    })}
+                    <ul className="header">
                         <form onSubmit={this.handleClick}>
+                            <li 
+                            style={{fontSize: 40}}><a href="#">Whats4Lunch</a></li>
+                            {this.state.venues.map(venue=>{
+                            return <li key={venue.venue.id}><a href="#">
+                            <Place venue={venue.venue} lat={this.state.lat} lng={this.state.lng}/>
+                            </a></li>
+                            })}
                             <input
                                 id="query"
                                 type="text"
@@ -39,7 +40,8 @@ class Places extends React.Component {
                                 onChange={this.handleChange}
                                 autoFocus
                                 />
-                        <button id="submit">Let's Eat!</button>
+                            <button id="submit">Let's Eat!</button>
+                            <a href="#" class="icon" onClick={this.menu}><i class="fa fa-bars"></i></a>
                         </form>
                     </ul>
                     <Map lat={this.state.lat} lng={this.state.lng} locations={this.state.locations} venues={this.state.venues}/>
@@ -79,7 +81,7 @@ class Places extends React.Component {
             ll: this.state.latlong,
             query: query,
             v:"20190101",
-            limit: 6,
+            limit: 5,
             openNow: 1
         }
         axios.get(endpoint + new URLSearchParams(params))
@@ -96,7 +98,6 @@ class Places extends React.Component {
             })
         })
     }
-
     logLocations=()=>{
         this.state.venues.map(venue=>{
           return this.setState({
@@ -104,9 +105,8 @@ class Places extends React.Component {
             })
         })
     }
-
-    testFunction(string){
-        console.log("Places sending: " + string)
+    menu(){
+        console.log("works")
     }
 }
 

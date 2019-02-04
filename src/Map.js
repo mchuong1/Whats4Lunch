@@ -40,6 +40,7 @@ class Map extends React.Component{
             label: "You"
         })
         var origin = this.props.lat + ","+ this.props.lng
+        var bounds = new window.google.maps.LatLngBounds()
         //markers
         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         var markers = this.props.venues.map(function(venue, i) {
@@ -48,7 +49,7 @@ class Map extends React.Component{
                 label:labels[i % labels.length],
                 map: map
             })
-            //infobox
+        //infobox
             var directions = "<a href=https://www.google.com/maps/dir/"+origin+ "/" + venue.venue.location.address +" target=\"_blank\">Directions</a>"
             var contentString = "<div><h3>"+ venue.venue.name+"</h3><p>"+venue.venue.location.address+ ","+venue.venue.location.formattedAddress[1]+"\n" +directions+"</p></div>"
             var infowindow = new window.google.maps.InfoWindow({
@@ -61,6 +62,8 @@ class Map extends React.Component{
                 this.map.setZoom(20)
                 this.map.setCenter(marker.getPosition())
             })
+            bounds.extend(marker.getPosition())
+            map.fitBounds(bounds)
             return marker
         })
     }
