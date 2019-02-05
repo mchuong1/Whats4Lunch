@@ -41,7 +41,7 @@ class Map extends React.Component{
         })
         var origin = this.props.lat + ","+ this.props.lng
         var bounds = new window.google.maps.LatLngBounds()
-        var infowindow = new window.google.maps.InfoWindow();
+        var infowindow = new window.google.maps.InfoWindow()
         //markers
         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         var markers = this.props.venues.map(function(venue, i) {
@@ -53,9 +53,12 @@ class Map extends React.Component{
             //infobox
             var directions = "<a href=https://www.google.com/maps/dir/"+origin+ "/" + venue.venue.location.address +" target=\"_blank\">Directions</a>"
             var contentString = "<div><h3>"+ venue.venue.name+"</h3><p>"+venue.venue.location.address+ ","+venue.venue.location.formattedAddress[1]+"\n" +directions+"</p></div>"
-            infowindow.setContent(contentString)
+            // var infowindow = new window.google.maps.InfoWindow({
+            // content: contentString
+            // });
             //eventListeners
             window.google.maps.event.addListener(marker, 'click', function(event){
+                infowindow.setContent(contentString)
                 infowindow.open(map, marker)
             })
             window.google.maps.event.addListener(marker, 'dblclick', function(event){
