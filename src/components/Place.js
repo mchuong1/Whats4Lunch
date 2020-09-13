@@ -4,7 +4,7 @@ import React from "react"
 class Place extends React.Component{
     render(){
         return(
-            <div className="Places">
+            <div className="Place">
                 <span>{this.props.venue.name}</span>
             </div>
         )

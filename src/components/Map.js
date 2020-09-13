@@ -4,7 +4,7 @@ export default class Map extends React.Component{
 	render(){
 		return(
 			<div>
-				<div id="map"> </div>
+				<div id="map" className="map"> </div>
 			</div>
 		)
 	}

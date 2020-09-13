@@ -22,16 +22,17 @@ class Places extends React.Component {
 				<div className="Place">
 					<ul className="header">
 						<form onSubmit={this.searchForNearbyVenues}>
-							<img alt="hamburger" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4VdmZk_mf-XHIQ9iPcDGDIv-SuiY9PYlANTeagAP0kWu-t3CMbw"/>
-							<li>Whats4Lunch</li>
+							<img className="main-icon" alt="hamburger" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4VdmZk_mf-XHIQ9iPcDGDIv-SuiY9PYlANTeagAP0kWu-t3CMbw"/>
+							<span className="title">Whats4Lunch</span>
 							<input
 								id="query"
+								className="query-input"
 								type="text"
 								placeholder="Coffee, sushi, pizza, etc..."
 								onChange={this.updateQuery}
 								autoFocus
 							/>
-							<button id="submit">Let's Eat!</button>
+							<button id="submit" className="submit-button">Let's Eat!</button>
 							{this.state.venues.map(venue => {
 								return <li key={venue.venue.id}>
 										<Place venue={venue.venue} lat={this.state.lat} lng={this.state.lng} />
@@ -68,7 +69,7 @@ class Places extends React.Component {
 	}
 	logLocations = () => {
 		this.state.venues.map(venue => {
-			this.setState({
+			return this.setState({
 				locations: this.state.locations.concat({ lat: venue.venue.location.lat, lng: venue.venue.location.lng })
 			})
 		})
