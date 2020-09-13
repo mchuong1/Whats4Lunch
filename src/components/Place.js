@@ -5,7 +5,7 @@ class Place extends React.Component{
     render(){
         return(
             <div className="Places">
-                <a href="javascript:void(0)">{this.props.venue.name}</a>
+                <span>{this.props.venue.name}</span>
             </div>
         )
     }
@@ -14,7 +14,7 @@ class Place extends React.Component{
     /*getDirections=()=>{
         var endpoint="https://maps.googleapis.com/maps/api/directions/json?"
         var params={
-            key:"AIzaSyCn5XAF4sSSjnjEVvWd8yB-nAyG8YOIb0o",
+            key:process.env.REACT_APP_GOOGLE_API_KEY,
             origin: "" + this.props.lat + "," + this.props.lng,
             destination:"" + this.props.venue.location.lat + ", " + this.props.venue.location.lng,
             travelMode: 'DRIVING',
