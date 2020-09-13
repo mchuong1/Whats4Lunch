@@ -3,8 +3,8 @@ import axios from 'axios'
 export function getVenuesService(query, latlng){
   const endpoint = "https://api.foursquare.com/v2/venues/explore?"
   const params = {
-    client_id: "MBDW52IQNZDUMKO4LXYXNLDGNNSAEBY4KMGNTSHCNKPO1ZXQ",
-    client_secret: "Y2DLAVALWAYU5TYZUIORUPN21HRNZPQGO0VVOWN15REYC4OB",
+    client_id: process.env.REACT_APP_FOURSQUARE_CLIENT_ID,
+    client_secret: process.env.REACT_APP_FOURSQUARE_API_KEY,
     ll: latlng,
     query: query,
     v: "20190101",
@@ -23,7 +23,7 @@ export function getNearbyRestaurants(query) {
   const params = {
     location: this.state.latlong,
     opennow: true,
-    key: "AIzaSyCn5XAF4sSSjnjEVvWd8yB-nAyG8YOIb0o",
+    key: process.env.REACT_APP_GOOGLE_API_KEY,
     radius: 2000,
     type: 'restaurant',
     query: query

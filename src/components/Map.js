@@ -24,7 +24,7 @@ class Map extends React.Component{
     }
     
     loadMap=()=>{
-        this.loadscript("https://maps.googleapis.com/maps/api/js?key=AIzaSyCn5XAF4sSSjnjEVvWd8yB-nAyG8YOIb0o&callback=initMap")
+        this.loadscript("https://maps.googleapis.com/maps/api/js?key="+ process.env.REACT_APP_GOOGLE_API_KEY +"&callback=initMap")
         window.initMap = this.initMap
     }
     //"41.7658923, -72.672725" 777 Main Street
@@ -56,6 +56,7 @@ class Map extends React.Component{
             // var infowindow = new window.google.maps.InfoWindow({
             // content: contentString
             // });
+            
             //eventListeners
             window.google.maps.event.addListener(marker, 'click', function(event){
                 infowindow.setContent(contentString)
