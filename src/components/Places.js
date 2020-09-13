@@ -22,7 +22,7 @@ class Places extends React.Component {
 				<div className="Place">
 					<ul className="header">
 						<form onSubmit={this.searchForNearbyVenues}>
-							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4VdmZk_mf-XHIQ9iPcDGDIv-SuiY9PYlANTeagAP0kWu-t3CMbw"/>
+							<img alt="hamburger" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4VdmZk_mf-XHIQ9iPcDGDIv-SuiY9PYlANTeagAP0kWu-t3CMbw"/>
 							<li>Whats4Lunch</li>
 							<input
 								id="query"
@@ -52,7 +52,7 @@ class Places extends React.Component {
 		this.setState({ locations: [] })
 		getVenuesService(this.state.query, this.state.latlong)
 		.then(response => this.setState({venues: response}))
-		.then(this.logLocations())
+		.then(this.logLocations)
 	}
 	updateQuery = (event) => {
 		this.setState({query: event.target.value})
@@ -68,7 +68,7 @@ class Places extends React.Component {
 	}
 	logLocations = () => {
 		this.state.venues.map(venue => {
-			return this.setState({
+			this.setState({
 				locations: this.state.locations.concat({ lat: venue.venue.location.lat, lng: venue.venue.location.lng })
 			})
 		})

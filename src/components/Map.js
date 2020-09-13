@@ -14,9 +14,10 @@ export default class Map extends React.Component{
 	}
 
 	shouldComponentUpdate(nextProps, nextState){
-		// if(nextProps.locations !== this.props.locations){ 
+		if(nextProps.locations !== this.props.locations){ 
 			this.loadMap()
-		// } 
+		}
+		return true 
 	}
 
 	loadscript=(url)=>{

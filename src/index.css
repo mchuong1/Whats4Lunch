@@ -43,7 +43,7 @@ ul.header li a {
 }
 ul.header button{
   background-color: cornflowerblue;
-  border-color: white;
+  border: none;
   color: white;
   padding: 5px;
   border-radius: 5px;
@@ -51,12 +51,15 @@ ul.header button{
   right:auto;
   top:-5px;
 }
-ul.header input{
+#query{
   padding: 5px;
   border-radius: 5px;
   position: relative;
   right:auto;
   top:-5px;
+  outline: none;
+  border: none;
+  margin-right: 10px;
 }
 ul.header {
   background-color: black;
