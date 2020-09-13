@@ -2,8 +2,9 @@ import React from "react"
 import Place from "./Place";
 import Map from "./Map";
 import { getVenuesService } from '../service/foursquare'
+import hamburger from '../icons/hamburger.png'
 
-class Places extends React.Component {
+export default class Places extends React.Component {
 	constructor() {
 		super()
 		this.state = {
@@ -22,7 +23,7 @@ class Places extends React.Component {
 				<div className="Place">
 					<ul className="header">
 						<form onSubmit={this.searchForNearbyVenues}>
-							<img className="main-icon" alt="hamburger" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4VdmZk_mf-XHIQ9iPcDGDIv-SuiY9PYlANTeagAP0kWu-t3CMbw"/>
+							<img className="main-icon" alt="hamburger" src={hamburger}/>
 							<span className="title">Whats4Lunch</span>
 							<input
 								id="query"
@@ -75,5 +76,3 @@ class Places extends React.Component {
 		})
 	}
 }
-
-export default Places
