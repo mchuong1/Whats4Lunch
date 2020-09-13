@@ -1,7 +1,6 @@
 import React from "react"
 import Place from "./Place";
 import Map from "./Map";
-import axios from "axios";
 import { getVenuesService } from '../service/foursquare'
 
 class Places extends React.Component {
@@ -17,6 +16,7 @@ class Places extends React.Component {
 			isMap: false
 		}
 	}
+
 	render() {
 		return (
 			<div>
@@ -46,76 +46,33 @@ class Places extends React.Component {
 		)
 	}
 	componentDidMount() {
-			this.getLocation(); //turn this into a user response
+		this.getLocation(); //turn this into a user response
 	}
 	searchForNearbyVenues = (e) => {
-			e.preventDefault()
-			this.setState({ locations: [] })
-			// this.getVenues(this.state.query)
-			getVenuesService(this.state.query, this.state.latlong).then(response => console.log(response))
+		e.preventDefault()
+		this.setState({ locations: [] })
+		getVenuesService(this.state.query, this.state.latlong)
+		.then(response => this.setState({venues: response}))
+		.then(this.logLocations())
 	}
 	updateQuery = (event) => {
-			console.log(event.target.value)
-			this.setState({
-					query: event.target.value
-			})
+		this.setState({query: event.target.value})
 	}
 	getLocation = () => {
-			navigator.geolocation.getCurrentPosition(response => {
-					console.log(response.coords)
-					this.setState({
-							latlong: response.coords.latitude + ", " + response.coords.longitude,
-							lat: response.coords.latitude,
-							lng: response.coords.longitude
-					})
+		navigator.geolocation.getCurrentPosition(response => {
+			this.setState({
+				latlong: response.coords.latitude + ", " + response.coords.longitude,
+				lat: response.coords.latitude,
+				lng: response.coords.longitude
 			})
-	}
-	getVenues = (query) => {
-			const endpoint = "https://api.foursquare.com/v2/venues/explore?"
-			const params = {
-					client_id: "MBDW52IQNZDUMKO4LXYXNLDGNNSAEBY4KMGNTSHCNKPO1ZXQ",
-					client_secret: "Y2DLAVALWAYU5TYZUIORUPN21HRNZPQGO0VVOWN15REYC4OB",
-					ll: this.state.latlong,
-					query: query,
-					v: "20190101",
-					limit: 5,
-					openNow: 1
-			}
-			axios.get(endpoint + new URLSearchParams(params))
-					.then(response => {
-							console.log(response.data.response.groups[0].items)
-							this.setState({
-									venues: response.data.response.groups[0].items
-							}) //end out setState
-					})
-					.then(response => {
-							this.logLocations()
-							this.setState({
-									isMap: true
-							})
-					})
-	}
-	getNearby = (query) => {
-			const endpoint = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
-			const params = {
-					location: this.state.latlong,
-					opennow: true,
-					key: "AIzaSyCn5XAF4sSSjnjEVvWd8yB-nAyG8YOIb0o",
-					radius: 2000,
-					type: 'restaurant',
-					query: query
-			}
-			axios.get(endpoint + new URLSearchParams(params))
-					.then(response => {
-							console.log(response)
-					})
+		})
 	}
 	logLocations = () => {
-			this.state.venues.map(venue => {
-					return this.setState({
-							locations: this.state.locations.concat({ lat: venue.venue.location.lat, lng: venue.venue.location.lng })
-					})
+		this.state.venues.map(venue => {
+			return this.setState({
+				locations: this.state.locations.concat({ lat: venue.venue.location.lat, lng: venue.venue.location.lng })
 			})
+		})
 	}
 }
 
