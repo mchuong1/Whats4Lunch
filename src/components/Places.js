@@ -2,6 +2,7 @@ import React from "react"
 import Place from "./Place";
 import Map from "./Map";
 import { getVenuesService } from '../service/foursquare'
+import GoogleMaps from "./GoogleMaps";
 
 class Places extends React.Component {
 	constructor() {
@@ -12,8 +13,7 @@ class Places extends React.Component {
 			query: "",
 			lat: 0,
 			lng: 0,
-			locations: [],
-			isMap: false
+			locations: []
 		}
 	}
 
@@ -41,6 +41,7 @@ class Places extends React.Component {
 						</form>
 					</ul>
 					<Map lat={this.state.lat} lng={this.state.lng} locations={this.state.locations} venues={this.state.venues} />
+					{/* <GoogleMaps /> */}
 				</div>
 			</div>
 		)
