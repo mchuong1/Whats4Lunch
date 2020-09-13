@@ -16,8 +16,7 @@ body {
   font-size: 40px;
 }
 .header {
-  background: rgb(191,195,34);
-  background: linear-gradient(0deg, rgba(191,195,34,1) 0%, rgba(69,45,253,1) 100%);
+  background-color: black;
   margin:0;
 }
 .header li {
