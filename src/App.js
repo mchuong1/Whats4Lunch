@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
-import Places from "./Places"
+import React from 'react';
+import Places from "./components/Places"
 
-class App extends Component {
+class App extends React.Component {
+  constructor(){
+    super()
+  }
+
   render() {
     return (
       <div>
