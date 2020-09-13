@@ -7,6 +7,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background: linear-gradient(#fcfff4,#e9e9ce);
+  font-family: 'Acme', sans-serif;
 }
 .container{
   grid-template-columns: 1fr, 1fr;
@@ -70,11 +71,9 @@ ul.header img{
   position: relative;
   left: auto;
   top: 10px;
-  transition: height 0.2s
 }
 ul.header img:hover{
   cursor: pointer;
-  height:60px;
 }
 ul.header li a:hover{
   background-color: gray;
