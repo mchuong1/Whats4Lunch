@@ -14,17 +14,7 @@ class App extends React.Component {
     );
   }
   componentDidMount(){
-    this.loadScript()
   }
-
-  loadScript=()=>{
-    var index = window.document.getElementsByTagName("link")[0]
-    var link = window.document.createElement("link")
-    link.href = "https://fonts.googleapis.com/css?family=Acme"
-    link.rel = "stylesheet" 
-    index.parentNode.insertBefore(link, index)
-  }
-
 }
 
 export default App;

@@ -1,24 +1,21 @@
 import React from 'react'
 import Place from './Place'
-import axios from 'axios'
+import { getVenuesService } from '../service/foursquare'
 
 export default class NavBar extends React.Component{
 	constructor(){
 		super()
-		this.state = {
-			venues: [],
-			locations: []
-		}
 	}
 
-	handleClick = (e) => {
+	searchForNearbyVenues = (e) => {
 		e.preventDefault()
 		this.setState({ locations: [] })
-		this.getVenues(this.state.query)
-		this.getNearby(this.state.query)
+		getVenuesService(this.state.query, this.state.latlong)
+		.then(response => this.setState({venues: response}))
+		.then(this.logLocations)
 	}
 
-	handleChange = (event) => {
+	updateQuery = (event) => {
 		console.log(event.target.value)
 		this.setState({
 				query: event.target.value
@@ -36,14 +33,14 @@ export default class NavBar extends React.Component{
 	render(){
 		return(
 			<ul className="header">
-				<form onSubmit={this.handleClick}>
+				<form onSubmit={this.searchForNearbyVenues}>
 					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4VdmZk_mf-XHIQ9iPcDGDIv-SuiY9PYlANTeagAP0kWu-t3CMbw"/>
 					<li>Whats4Lunch</li>
 					<input
 						id="query"
 						type="text"
 						placeholder="Coffee, sushi, pizza, etc..."
-						onChange={this.handleChange}
+						onChange={this.updateQuery}
 						autoFocus
 					/>
 					<button id="submit">Let's Eat!</button>
